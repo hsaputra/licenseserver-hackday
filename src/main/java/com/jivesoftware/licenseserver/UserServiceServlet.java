@@ -21,7 +21,7 @@ public class UserServiceServlet implements HttpRequestHandler {
   public void handleRequest(HttpServletRequest req,
       HttpServletResponse resp) throws ServletException, IOException {
     // check reqquest endpoint
-    String contextPath = req.getContextPath();
+    String contextPath = req.getPathInfo();
 
     if(contextPath.endsWith("/install")) {
       handleUserInstall(req, resp);

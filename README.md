@@ -1,4 +1,4 @@
 licenseserver-hackday
 =====================
 
-licenseserver-hackday. That is all
+Service to Accept user installed Jive Apps and create activity entries in Gateway. That is all
