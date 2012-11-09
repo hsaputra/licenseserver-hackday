@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cxf="http://cxf.apache.org/core"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+     http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+     http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+     http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd">
+  <import resource="classpath:META-INF/cxf/cxf.xml"/>
+  <import resource="classpath:META-INF/cxf/cxf-extension-jaxrs-binding.xml"/>
+  <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
+
+  <jaxrs:client id="gatewayRegistrationServiceClient"
+                address="${jive.gateway.host}/${jive.gateway.registration.rest.path}"
+                serviceClass="com.jivesoftware.gateway.services.v1.RegistrationService"
+                inheritHeaders="true">
+    <jaxrs:providers>
+      <bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider"></bean>
+
+    </jaxrs:providers>
+    <jaxrs:headers>
+      <entry key="Accept" value="application/json"/>
+      <entry key="Content-Type" value="application/json"/>
+    </jaxrs:headers>
+  </jaxrs:client>
+
+  <jaxrs:client id="activityServiceClientProxy"
+                address="${jive.activitystream.host}/${jive.activitystream.rest.path}"
+                serviceClass="com.jivesoftware.activitystreams.v1.services.ActivityStreamService"
+                inheritHeaders="true">
+    <jaxrs:providers>
+      <bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider"></bean>
+    </jaxrs:providers>
+    <jaxrs:outInterceptors>
+      <ref bean="SignedFetchInterceptor"/>
+    </jaxrs:outInterceptors>
+    <jaxrs:headers>
+      <entry key="Accept" value="application/json"/>
+      <entry key="Content-Type" value="application/json"/>
+    </jaxrs:headers>
+  </jaxrs:client>
+
+  <jaxrs:client id="gatewayPingServiceClientProxy"
+                address="${jive.gateway.host}/${jive.gateway.ping.rest.path}"
+                serviceClass="com.jivesoftware.gateway.services.v1.PingService"
+                inheritHeaders="true">
+    <jaxrs:providers>
+      <bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider"></bean>
+    </jaxrs:providers>
+    <jaxrs:headers>
+      <entry key="Accept" value="application/json"/>
+      <entry key="Content-Type" value="application/json"/>
+    </jaxrs:headers>
+  </jaxrs:client>
+
+</beans>
