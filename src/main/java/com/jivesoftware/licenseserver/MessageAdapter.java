@@ -11,7 +11,7 @@ public class MessageAdapter {
    *
    * @return ActivityRepresentation
    */
-  public ActivityRepresentation convert(final LicenseServerMessage message) {
+  public ActivityRepresentation convert(final LicenseServerMessage message, long userId) {
     final ActivityRepresentation activityRepresentation = new ActivityRepresentation();
     activityRepresentation.setID(message.getId());
     activityRepresentation.setTitle(message.getTitle());
@@ -20,7 +20,7 @@ public class MessageAdapter {
 
     ObjectRepresentation actor = new ObjectRepresentation();
     // HARDCODE USER ID
-    actor.setID("uri:userid:" + 1);
+    actor.setID("uri:userid:" + userId);
     actor.setTitle("Admin" + " " + "Admin");
     actor.setSummary("Admin" + " " + "Admin");
     activityRepresentation.setActor(actor);

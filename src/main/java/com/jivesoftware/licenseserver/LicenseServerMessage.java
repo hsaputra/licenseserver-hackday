@@ -4,8 +4,10 @@ import com.jivesoftware.activitystreams.v1.rest.*;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 public class LicenseServerMessage {
+  private Map<String, String> actor;
   private String id;
   private String title;
   private String body;
@@ -80,5 +82,13 @@ public class LicenseServerMessage {
 
   public HashMap getContext() {
     return context;
+  }
+
+  public Map<String, String> getActor() {
+    return actor;
+  }
+
+  public void setActor(Map<String, String> actor) {
+    this.actor = actor;
   }
 }

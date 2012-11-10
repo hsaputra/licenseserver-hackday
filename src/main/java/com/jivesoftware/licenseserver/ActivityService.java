@@ -30,7 +30,7 @@ public class ActivityService {
     final ActivityStreamRepresentation activityStream = activityStreamFactory.create();
 
     final List<ActivityRepresentation> list = new ArrayList<ActivityRepresentation>();
-    list.add(messageAdapter.convert(message));
+    list.add(messageAdapter.convert(message, userId));
 
     activityStream.setActivities(list);
 
