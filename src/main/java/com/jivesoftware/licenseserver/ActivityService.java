@@ -34,7 +34,7 @@ public class ActivityService {
 
     activityStream.setActivities(list);
 
-    Response response = activityStreamService.postActivity(jiveUUID, appUUID, 1L, userId, activityStream);
+    Response response = activityStreamService.postActivity(jiveUUID, appUUID, userId, userId, activityStream);
 
     if (LOG.isDebugEnabled()) {
       LOG.debug("status code [" + response.getStatus() + "], status family=[" +
