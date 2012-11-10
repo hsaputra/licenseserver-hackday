@@ -15,6 +15,7 @@ public class ActivityServiceTest {
     ActivityService svc = new ActivityService();
     svc.setActivityStreamFactory(new ActivityStreamFactory());
     svc.setMessageAdapter(new MessageAdapter());
+    svc.setActivityStreamServiceFactory(new ActivityStreamServiceFactory());
 
     LicenseServerMessage msg = new LicenseServerMessage();
     msg.setBody("Test Activity Body.");
