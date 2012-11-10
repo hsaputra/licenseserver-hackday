@@ -24,7 +24,7 @@ public class ActivityStreamServiceFactory {
 
     JAXRSClientFactoryBean sf = new JAXRSClientFactoryBean();
     sf.setResourceClass(ActivityStreamService.class);
-    sf.setAddress("https://market-auto.apps.jiveland.com/gateway/api/activity/v1");
+    sf.setAddress("https://gateway.jivesoftware.com/gateway/api/activity/v1");
     sf.setHeaders(headers);
     sf.setProvider(new JacksonJaxbJsonProvider());
     sf.setOutInterceptors(interceptorList);
