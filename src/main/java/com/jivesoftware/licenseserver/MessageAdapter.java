@@ -1,11 +1,9 @@
 package com.jivesoftware.licenseserver;
 
 import com.jivesoftware.activitystreams.v1.rest.*;
-import org.springframework.stereotype.*;
 
-import java.util.*;
+import java.util.Arrays;
 
-@Component("messageAdapter")
 public class MessageAdapter {
   /**
    * Converts a LicenseServerMessage object to an ActivityRepresentation

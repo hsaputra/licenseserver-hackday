@@ -16,10 +16,6 @@
     </property>
   </bean>
 
-  <bean id="registrationServiceClient"
-        factory-bean="registrationServiceFactory"
-        factory-method="getRegistrationService"/>
-
   <bean id="activityServiceClient"
         factory-bean="activityServiceFactory"
         factory-method="getService"/>

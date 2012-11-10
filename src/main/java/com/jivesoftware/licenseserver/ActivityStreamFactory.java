@@ -1,10 +1,7 @@
 package com.jivesoftware.licenseserver;
 
 import com.jivesoftware.activitystreams.v1.rest.*;
-import org.springframework.stereotype.*;
 
-
-@Component("activityStreamFactory")
 public class ActivityStreamFactory {
   public ActivityStreamRepresentation create() {
     final ActivityStreamRepresentation activityStream = new ActivityStreamRepresentation();

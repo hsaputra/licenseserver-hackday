@@ -1,6 +1,7 @@
 package com.jivesoftware.licenseserver;
 
 import com.google.common.collect.Lists;
+import com.google.inject.Inject;
 import com.jivesoftware.activitystreams.v1.rest.ActivityRepresentation;
 import com.jivesoftware.activitystreams.v1.rest.ActivityStreamRepresentation;
 import com.jivesoftware.activitystreams.v1.services.ActivityStreamService;
@@ -16,7 +17,6 @@ import java.util.List;
 import static javax.ws.rs.core.Response.Status.Family.SUCCESSFUL;
 import static javax.ws.rs.core.Response.Status.fromStatusCode;
 
-@Service("activityService")
 public class ActivityService {
   public static List<UserRequest> INCOMING_USER_REQUESTS = Lists.newLinkedList();
 
@@ -47,17 +47,18 @@ public class ActivityService {
     }
   }
 
-  @Resource(name = "activityServiceClient")
-  public void setActivityStreamService(ActivityStreamService activityStreamService) {
+  @Inject
+  public void setActivityStreamServiceFactory(ActivityStreamServiceFactory factory) {
+    ActivityStreamService activityStreamService = factory.build();
     this.activityStreamService = activityStreamService;
   }
 
-  @Resource(name = "messageAdapter")
+  @Inject
   public void setMessageAdapter(MessageAdapter messageAdapter) {
     this.messageAdapter = messageAdapter;
   }
 
-  @Resource(name = "activityStreamFactory")
+  @Inject
   public void setActivityStreamFactory(ActivityStreamFactory activityStreamFactory) {
     this.activityStreamFactory = activityStreamFactory;
   }

@@ -1,8 +1,7 @@
 package com.jivesoftware.licenseserver;
 
-import org.springframework.web.HttpRequestHandler;
-
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,14 +10,14 @@ import java.io.IOException;
 /**
  * Servlet to manage user installing licence servlet
  */
-public class UserServiceServlet implements HttpRequestHandler {
+public class UserServiceServlet extends HttpServlet {
   /**
    * Override the GET handler to process user install and uninstall Apps
    * @param req
    * @param resp
    */
   @Override
-  public void handleRequest(HttpServletRequest req,
+  protected void doGet(HttpServletRequest req,
       HttpServletResponse resp) throws ServletException, IOException {
     // check reqquest endpoint
     String contextPath = req.getPathInfo();

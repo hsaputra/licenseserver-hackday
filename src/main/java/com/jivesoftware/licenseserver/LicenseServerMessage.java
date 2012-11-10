@@ -5,9 +5,6 @@ import com.jivesoftware.activitystreams.v1.rest.*;
 import java.util.Date;
 import java.util.HashMap;
 
-
-/**
- */
 public class LicenseServerMessage {
   private String id;
   private String title;
