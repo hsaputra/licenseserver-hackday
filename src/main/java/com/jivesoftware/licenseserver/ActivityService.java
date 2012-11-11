@@ -2,6 +2,7 @@ package com.jivesoftware.licenseserver;
 
 import com.google.common.collect.Lists;
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import com.jivesoftware.activitystreams.v1.rest.ActivityRepresentation;
 import com.jivesoftware.activitystreams.v1.rest.ActivityStreamRepresentation;
 import com.jivesoftware.activitystreams.v1.services.ActivityStreamService;
@@ -17,14 +18,19 @@ import java.util.List;
 import static javax.ws.rs.core.Response.Status.Family.SUCCESSFUL;
 import static javax.ws.rs.core.Response.Status.fromStatusCode;
 
+@Singleton
 public class ActivityService {
-  public static List<UserRequest> INCOMING_USER_REQUESTS = Lists.newLinkedList();
 
   private static final Logger LOG = LogManager.getLogger(ActivityService.class);
+
+  public static final List<UserRequest> INCOMING_USER_REQUESTS = Lists.newLinkedList();
 
   private ActivityStreamService activityStreamService;
   private MessageAdapter messageAdapter;
   private ActivityStreamFactory activityStreamFactory;
+
+  @Inject
+  public ActivityService() {}
 
   public void publish(final String jiveUUID, long userId, String appUUID, LicenseServerMessage message) {
     final ActivityStreamRepresentation activityStream = activityStreamFactory.create();
